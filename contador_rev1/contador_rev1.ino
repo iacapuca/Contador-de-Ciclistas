@@ -184,30 +184,35 @@ void LogToSD() {
           now = rtc.now();
 
      File dataFile = SD.open(FILENAME_DATA, FILE_WRITE);
-
-     dataFile.print(humanCount);
-     dataFile.print(",");
-     dataFile.print(numberOfPingsObsevedHumanIsInRange);
-     dataFile.print(",");
-     dataFile.print(dist_cm);
      
-     if(ATIVA_RTC) {
+     if(dataFile) {
+          dataFile.print(humanCount);
           dataFile.print(",");
-          dataFile.print(now.year(), DEC);
-          dataFile.print('/');
-          dataFile.print(now.month(), DEC);
-          dataFile.print('/');
-          dataFile.print(now.day(), DEC);
-          dataFile.print(' ');
+          dataFile.print(numberOfPingsObsevedHumanIsInRange);
           dataFile.print(",");
-          dataFile.print(now.hour(), DEC);
-          dataFile.print(':');
-          dataFile.print(now.minute(), DEC);
-          dataFile.print(':');
-          dataFile.print(now.second(), DEC);
+          dataFile.print(dist_cm);
+     
+          if(ATIVA_RTC) {
+               dataFile.print(",");
+               dataFile.print(now.year(), DEC);
+               dataFile.print('/');
+               dataFile.print(now.month(), DEC);
+               dataFile.print('/');
+               dataFile.print(now.day(), DEC);
+               dataFile.print(' ');
+               dataFile.print(",");
+               dataFile.print(now.hour(), DEC);
+               dataFile.print(':');
+               dataFile.print(now.minute(), DEC);
+               dataFile.print(':');
+               dataFile.print(now.second(), DEC);
+          }
+          dataFile.println();
+          dataFile.close();
+     } else {
+          if(ATIVA_SERIALPRINT)
+               Serial.println("Erro ao gravar o arquivo.");
      }
-     dataFile.println();
-     dataFile.close();
 }
 
 /////////////////////////
