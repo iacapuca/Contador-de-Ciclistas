@@ -84,7 +84,7 @@ Passo 4: Disponibilização dos dados
 #define LED 13                // LED interno do arduíno
 
 // SD CARD
-#define chipSelect 4;         // Pino de chipSelect
+#define chipSelect 4          // Pino de chipSelect
 //const int chipSelect = 4;
 
 // SONAR
